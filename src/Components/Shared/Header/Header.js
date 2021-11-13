@@ -27,7 +27,9 @@ const Header = () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Toys Zone
                 </Typography>
-                <Link to="/toys"><Button color="inherit">Toys</Button></Link>
+                <Link to="/toys"><Button style={{ textDecoration: 'none', color: 'white' }} color="inherit">Toys</Button></Link>
+                <Link to="/about"><Button style={{ textDecoration: 'none', color: 'white' }} color="inherit">About Us</Button></Link>
+                <Link to="/"><Button style={{ textDecoration: 'none', color: 'white' }} color="inherit">something</Button></Link>
                 {
                     user?.email ?
                         <Box>

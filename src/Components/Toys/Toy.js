@@ -11,7 +11,7 @@ const Toy = (props) => {
 
     return (
       <Grid item xs={4} sm={4} md={4}>
-      <Card sx={{ minWidth: 275, border: 0, boxShadow: 0 }}>
+      <Card sx={{ minWidth: 275, border: 0, boxShadow: 3 }}>
           <CardMedia
               component="img"
               style={{ width: 'auto', margin: '0 auto' }}

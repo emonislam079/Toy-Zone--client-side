@@ -9,7 +9,7 @@ const SliceToys = () => {
     const [toys , setToys]= useState([]);
 
     useEffect(() => {
-        fetch('./Toys.json')
+        fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => setToys(data))
     }, []);
@@ -17,11 +17,8 @@ const SliceToys = () => {
             
             <Box sx={{ flexGrow: 1 }}>
             <Container>
-                <Typography sx={{ fontWeight: 500, m: 2, color: 'success.main' }} variant="h6" component="div">
-                    OUR SERVICES
-                </Typography>
-                <Typography sx={{ fontWeight: 600, m: 5 }} variant="h4" component="div">
-                    Services We Provide
+            <Typography sx={{ fontWeight: 600, m: 5 }} variant="h4" component="div">
+                    OUR PRODUCTS
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {

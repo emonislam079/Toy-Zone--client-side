@@ -1,13 +1,14 @@
 import React from 'react';
-import Register from '../../LogIn/Register/Register';
+import Bannar from '../Bannar/Bannar';
+
 import SliceToys from '../SliceToy/SliceToys';
 
 const Home = () => {
     return (
         <div>
-            <h2>this is home</h2>
+            <Bannar></Bannar>
             <SliceToys></SliceToys>
-            <Register></Register>
+            
             
             
             
