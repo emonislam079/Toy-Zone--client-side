@@ -5,10 +5,11 @@ import Grid from '@mui/material/Grid';
 import { useForm } from 'react-hook-form';
 import { Alert } from '@mui/material';
 import './Review.css'
+import useAuth from '../../../Hooks/useAuth';
 
 const Review = () => {
-    
-    const { register, handleSubmit } = useForm();
+  const { user } = useAuth();
+    const { register, handleSubmit, reset } = useForm();
     const [success, setSuccess] = useState(false);
         const onSubmit = data => {
             console.log(data);
@@ -17,6 +18,7 @@ const Review = () => {
                   if(data.rating){
                     console.log(data);
                     setSuccess(true);
+                    reset();
                   }
         })
     }
@@ -28,7 +30,7 @@ const Review = () => {
             <h1>Review us</h1>
 
           <form className="Reviews-form" onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("name") } Placeholder='Your Name' />
+            <input {...register("name") } Placeholder='Your Name' defaultValue={user.displayName} />
             <br />
             <textarea {...register("review")} Placeholder='Your review in word'/>
             <br />

@@ -7,6 +7,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import useAuth from '../../Hooks/useAuth';
 import './Orders.css'
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Orders = () => {
     const [orders, setOrders] = useState({});
@@ -14,22 +16,22 @@ const Orders = () => {
     const { productId } = useParams();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-      fetch('http://localhost:5000/products', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res=>res.json())
-        .then(result =>{
-          if(result.insertedId){
-            alert('Order processed successfully');
-            reset();
-            
-          }
-        })
-    };
+        fetch('http://localhost:5000/order', {
+              method: 'POST',
+              headers: {
+                  'content-type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          })
+          .then(res=>res.json())
+          .then(result =>{
+            if(result.insertedId){
+              alert('order processed successfully');
+              reset();
+              
+            }
+          })
+      };
   
     
 
@@ -74,19 +76,23 @@ const Orders = () => {
 
                 <form className="Orders-form" onSubmit={handleSubmit(onSubmit)}>
 
-                <input  {...register("name")} />
+                <input defaultValue={user.displayName}  {...register("name")} />
 
-                <input  {...register("email", { required: true })} />
+                <input defaultValue={user.email} {...register("email", { required: true })} />
                 {errors.email && <span className="error">This field is required</span>}
+                
+                <input placeholder="Products Name"  {...register("productsName", { required: true })} />
+                <input placeholder="Price"  {...register("price", { required: true })} />
                 
                 <input placeholder="Address" defaultValue="" {...register("address", { required: true })} />
                 
                 <input placeholder="phone number" defaultValue="" {...register("phone", { required: true }) } />
                 
                 <input type="submit" />
-      
-                
-            </form>
+
+                <Link to='/dashboard/myOrder'><Button sx={{m:2}} type="submit" variant="contained">My Order</Button></Link>
+                <Link to='/home'><Button sx={{m:2}} type="submit" variant="contained">Go To Home</Button></Link>
+                </form>
             </div>
     </div>
   </div>

@@ -1,57 +1,57 @@
+import { Button, Card, CardActionArea, CardContent, Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+
 import useAuth from '../../../Hooks/useAuth';
 
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
 const MyOrder = () => {
   const {user} = useAuth();
-
+  const [Orders, setOrders]= useState([]);
     useEffect(() => {
-      const url = `http://localhost:5000/order?id=${user.email}`;
+      const url = `http://localhost:5000/order?email=${user.email}`;
         fetch(url)
         .then(res => res.json())
+        .then(data => setOrders(data))
     }, [])
+
+
+
+    
     return (
-        <div>
-            <h1>Here is My Order</h1>
-            <TableContainer className='products-table' style={{'width': '90%', 'margin': 'auto'}} component={Paper}>
-      <Table  aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Product Name</StyledTableCell>
-            <StyledTableCell align="right">manage</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {/* {products.map((product) => (
-            <StyledTableRow key={product._id}>
-              <StyledTableCell component="th" scope="row">
-                {product.model}
-              </StyledTableCell>
-              <StyledTableCell align="right"><button onClick={() => handleDelete(product._id)}>Delete</button></StyledTableCell>
-            </StyledTableRow>
-          ))} */}
-        </TableBody>
-      </Table>
-    </TableContainer>
+      <div>
+            <h2>My Orders: {Orders.length}</h2>
+            <TableContainer component={Paper}>
+                <Table sx={{}} aria-label="Appointments table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Products Name</TableCell>
+                            <TableCell align="center">Price</TableCell>
+                            <TableCell align="right">Address</TableCell>
+                            <TableCell align="right">Phone</TableCell>
+                            
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {Orders.map((row) => (
+                            <TableRow
+                                key={row._id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row.productsName}
+                                </TableCell>
+                                <TableCell align="center">{row.price}Tk</TableCell>
+                                <TableCell align="right">{row.address}</TableCell>
+                                <TableCell align="right">{row.phone}</TableCell>
+                                
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
+      
     );
 };
 

@@ -87,14 +87,11 @@ const useFirebase = () => {
     // } , [user.email])
 
     const logout = () => {
-        setIsLoading(true);
-        signOut(auth).then(() => {
-            // Sign-out successful.
-          }).catch((error) => {
-            // An error happened.
-          })
+      setIsLoading(true);
+      signOut(auth)
+          .then(() => { })
           .finally(() => setIsLoading(false));
-    }
+  }
 
     const saveUser = (email, displayName, method) => {
       const user = {email, displayName};
