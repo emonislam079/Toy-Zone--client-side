@@ -1,0 +1,16 @@
+.manage-product h2 {
+  background-color: lightgreen;
+  padding: 20px;
+  border-radius: 5px;
+  color: royalblue;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .products-table {
+    width: 95%;
+    margin: auto;
+  }
+}

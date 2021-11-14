@@ -8,6 +8,8 @@ import PrivateRoute from './Components/LogIn/PrivetRoute/PrivateRoute';
 import Header from './Components/Shared/Header/Header';
 import Register from './Components/LogIn/Register/Register';
 import LogIn from './Components/LogIn/LogIn';
+import Orders from './Components/Orders/Orders';
+import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
 
 
 function App() {
@@ -15,9 +17,11 @@ function App() {
     <div className="App">
       <AuthProvider>
       <Router>
-        <Header></Header>
         <Switch>
         <Route exact path="/">
+              <Home></Home>
+          </Route>
+        <Route exact path="/home">
               <Home></Home>
           </Route>
 
@@ -30,7 +34,15 @@ function App() {
           <Route path="/login">
               <LogIn></LogIn>
             </Route>
-          
+          <Route path="/register">
+           <Register></Register>
+          </Route>
+          <PrivateRoute path="/orders/:productId">
+              <Orders></Orders>
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+           <Dashboard></Dashboard>
+          </PrivateRoute>
             </Switch>
             </Router>
             </AuthProvider>

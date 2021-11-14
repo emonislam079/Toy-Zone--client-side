@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import Toy from './Toy';
+import Header from '../Shared/Header/Header';
 
 const Toys = () => {
     const [toys , setToys]= useState([]);
@@ -15,6 +16,8 @@ const Toys = () => {
             .then(data => setToys(data))
     }, []);
     return (
+        <Box>
+        <Header></Header>
         <Box sx={{ flexGrow: 1 }}>
             <Container>
                 <Typography sx={{ fontWeight: 600, m: 5 }} variant="h4" component="div">
@@ -29,6 +32,7 @@ const Toys = () => {
                     }
                 </Grid>
             </Container>
+        </Box>
         </Box>
         
     );

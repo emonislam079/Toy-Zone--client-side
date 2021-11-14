@@ -14,122 +14,110 @@ const useFirebase = () => {
     const [admin, setAdmin] = useState(false);
 
 
-    const auth = getAuth();
-    const googleProvider = new GoogleAuthProvider();
+    const auth = getAuth()
+    const googleProvider = new GoogleAuthProvider()
 
-    const registerUser = (email, password, name, history) => {
+    const registerUser = (email, password,name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                setAuthError('');
-                const newUser = { email, displayName: name };
-                setUser(newUser);
-                // save user to the database
-
-
-                // saveUser(email, name, 'POST');
-
-
-                // send name to firebase after creation
-                updateProfile(auth.currentUser, {
-                    displayName: name
-                }).then(() => {
-                }).catch((error) => {
-                });
-                history.replace('/');
-            })
-            .catch((error) => {
-                setAuthError(error.message);
-                console.log(error);
-            })
-            .finally(() => setIsLoading(false));
+        .then((userCredential) => {
+            setAuthError('');
+            const newUser = {email, displayName: name}
+            setUser(newUser);
+            // save user to database
+            saveUser(email, name, 'POST');
+            updateProfile(auth.currentUser, {
+                displayName: name
+              }).then(() => {
+              }).catch((error) => {
+              });
+            history.replace('/');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          setAuthError(error.message);
+          // ..
+        })
+        .finally(() => setIsLoading(false));
     }
 
     const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const destination = location?.state?.from || '/';
-                history.replace(destination);
-                setAuthError('');
-            })
-            .catch((error) => {
-                setAuthError(error.message);
-            })
-            .finally(() => setIsLoading(false));
+  .then((userCredential) => {
+     const destination = location?.state?.from || "/";
+     history.replace(destination);
+    setAuthError('');
+  })
+  .catch((error) => {
+    setAuthError(error.message);
+  })
+  .finally(() => setIsLoading(false));
     }
 
-    const signInWithGoogle = (location, history) => {
+    const signInWithGoogle = (location, history ) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                const user = result.user;
-
-                // saveUser(user.email, user.displayName, 'PUT');
-
-                setAuthError('');
-                const destination = location?.state?.from || '/';
-                history.replace(destination);
-            }).catch((error) => {
-                setAuthError(error.message);
-            }).finally(() => setIsLoading(false));
+  .then((result) => {
+    const destination = location?.state?.from || "/";
+     history.replace(destination);
+    const user = result.user;
+    saveUser(user.email, user.displayName, 'PUT')
+    setAuthError('');
+  }).catch((error) => {
+    setAuthError(error.message);
+  }).finally(() => setIsLoading(false))
     }
 
-    // observer user state
+    // observe user
     useEffect(() => {
-        const unsubscribed = onAuthStateChanged(auth, (user) => {
+      const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user);
-                
-            } else {
-                setUser({})
-            }
+              setUser(user);
+            } 
             setIsLoading(false);
-        });
-        return () => unsubscribed;
+          });
+          return () => unsubscribed;
     }, [])
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/users/${user.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setAdmin(data.admin))
-    // }, [user.email])
+    //   fetch(`https://murmuring-depths-55393.herokuapp.com/users/${user.email}`)
+    //   .then(res => res.json())
+    //   .then(data => setAdmin(data.admin))
+    // } , [user.email])
 
     const logout = () => {
         setIsLoading(true);
         signOut(auth).then(() => {
             // Sign-out successful.
-        }).catch((error) => {
+          }).catch((error) => {
             // An error happened.
-        })
-            .finally(() => setIsLoading(false));
+          })
+          .finally(() => setIsLoading(false));
     }
 
-    // const saveUser = (email, displayName, method) => {
-    //     const user = { email, displayName };
-    //     fetch('http://localhost:5000/users', {
-    //         method: method,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then()
-    // }
+    const saveUser = (email, displayName, method) => {
+      const user = {email, displayName};
+      fetch('https://murmuring-depths-55393.herokuapp.com/users', {
+        method: method,
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then()
+    }
 
-
-
-
-    return (
+    return{
         user,
         admin,
-        isLoading,
-        authError,
         registerUser,
         loginUser,
-        signInWithGoogle,
-        logout
-    );
+        logout,
+        isLoading,
+        authError, 
+        signInWithGoogle
+    }
 };
 
 export default useFirebase;

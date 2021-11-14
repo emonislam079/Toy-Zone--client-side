@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Toy = (props) => {
     const {name, details, price, img, quantity, _id}= props.toy
@@ -31,6 +32,7 @@ const Toy = (props) => {
               <Typography variant="h5" component="div">
                   Available :{quantity}pc
               </Typography>
+              <Link to={`/orders/${_id}`}><Button  variant="contained">Buy Now</Button></Link>
           </CardContent>
       </Card>
   </Grid>

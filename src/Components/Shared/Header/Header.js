@@ -1,51 +1,48 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
+
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import useAuth from '../../../Hooks/useAuth';
 import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
     const { user, logout } = useAuth();
     return (
-        <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Toys Zone
-                </Typography>
-                <Link to="/toys"><Button style={{ textDecoration: 'none', color: 'white' }} color="inherit">Toys</Button></Link>
-                <Link to="/about"><Button style={{ textDecoration: 'none', color: 'white' }} color="inherit">About Us</Button></Link>
-                <Link to="/"><Button style={{ textDecoration: 'none', color: 'white' }} color="inherit">something</Button></Link>
-                {
-                    user?.email ?
-                        <Box>
-                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
-                                <Button color="inherit">Dashboard</Button>
-                            </NavLink>
-                            <Button onClick={logout} color="inherit">Logout</Button>
-                        </Box>
-                        :
-                        <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
-                            <Button color="inherit">Login</Button>
-                        </NavLink>
-                }
-            </Toolbar>
-        </AppBar>
-    </Box>
+        <nav class="navbar navbar-expand-lg navbar-light primary" style={{"background-color": "#50EBEC"}}>
+  <div class="container-fluid">
+    <Link class='navbar-brand' to='/home'>Toys Zone</Link>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <Link class='nav-link active' aria-current='page' to='/'>Home</Link>
+        </li>
+        <li class="nav-item">
+          <Link class='nav-link' to='/toys'>Toys</Link>
+        </li>
+        {
+            user?.email ?
+            <Box>
+            <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/dashboard">
+                <Button color="inherit">Dashboard</Button>
+            </NavLink>
+            <Button onClick={logout} color="inherit">Logout</Button>
+            <span>{user.displayName}</span>
+        </Box>
+            :
+            <li class="nav-item">
+          <Link class="nav-link" to="/login">Login</Link>
+        </li>
+
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
     );
 };
 
