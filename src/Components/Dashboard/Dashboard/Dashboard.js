@@ -50,14 +50,14 @@ function Dashboard(props) {
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/manageProducts`}><Button >Manage Products</Button></Link>
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/addProduct`}><Button >Add Product</Button></Link>
-      <Divider /></Box> ||
+      <Divider /></Box>}
       <Box>
         <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/myOrder`}><Button >My Order</Button></Link>
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/payment`}><Button >Payment</Button></Link>
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/review`}><Button >Review</Button></Link>
-      <Divider /></Box>}
+      <Divider /></Box>
     </div>
   );
 
