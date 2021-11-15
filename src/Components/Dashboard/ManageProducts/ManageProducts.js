@@ -1,20 +1,14 @@
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-import useAuth from '../../../Hooks/useAuth';
-
-
 const ManageOrder = () => {
-  const {user} = useAuth();
   const [Orders, setOrders]= useState([]);
     useEffect(() => {
-      const url = 'http://localhost:5000/allOrders';
+      const url = 'https://agile-fortress-60515.herokuapp.com/allOrders';
         fetch(url)
         .then(res => res.json())
         .then(data => setOrders(data))
     }, [])
-
-
 
     
     return (
@@ -49,6 +43,7 @@ const ManageOrder = () => {
                                 <TableCell align="right">{row.price}Tk</TableCell>
                                 <TableCell align="right">{row.address}</TableCell>
                                 <TableCell align="right">{row.phone}</TableCell>
+                                
                                 
                             </TableRow>
                         ))}

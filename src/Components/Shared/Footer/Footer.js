@@ -16,18 +16,18 @@ const Footer = () => {
         <br />
         <a href="/about">About Us</a>
         <br />
-        <a href="">Contact Us</a>
+        <a href="/home">Contact Us</a>
         <br />
-        <a href="">Place Order</a>
+        <a href="/home">Place Order</a>
         <br />
         
     </div>
     <div className="col link">
         <h3>We Accepts</h3>
         <br />
-        <a href="">Mobile Banking</a>
+        <a href="/dashboard/payment">Mobile Banking</a>
         <br />
-        <a href="">Hand Cash</a>
+        <a href="/dashboard/payment">Hand Cash</a>
     </div>
     <div className="col contact text-center">
         <h3 >Contact Details</h3>

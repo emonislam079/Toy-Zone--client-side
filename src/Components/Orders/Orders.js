@@ -16,7 +16,7 @@ const Orders = () => {
     const { productId } = useParams();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/order', {
+        fetch('https://agile-fortress-60515.herokuapp.com/order', {
               method: 'POST',
               headers: {
                   'content-type': 'application/json'
@@ -36,7 +36,7 @@ const Orders = () => {
     
 
     useEffect(() => {
-        const url = `http://localhost:5000/products/${productId}`;
+        const url = `https://agile-fortress-60515.herokuapp.com/products/${productId}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));

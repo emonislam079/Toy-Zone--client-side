@@ -11,7 +11,7 @@ const Toys = () => {
     const [toys , setToys]= useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://agile-fortress-60515.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setToys(data))
     }, []);

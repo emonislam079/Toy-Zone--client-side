@@ -17,7 +17,7 @@ const MakeAdmin = () => {
     }
     const handleAdminSubmit = e => {
         const user = {email};
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://agile-fortress-60515.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 
@@ -27,7 +27,7 @@ const MakeAdmin = () => {
         })
         .then(res => res.json())
         .then(data => {
-            if(data.modifiedCount){
+            if (data.modifiedCount){
                 setSuccess(true);
                 reset();
             }

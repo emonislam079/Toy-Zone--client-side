@@ -13,7 +13,7 @@ const Review = () => {
     const [success, setSuccess] = useState(false);
         const onSubmit = data => {
             console.log(data);
-              axios.post('http://localhost:5000/reviews', data)
+              axios.post('https://agile-fortress-60515.herokuapp.com/reviews', data)
               .then(res => {
                   if(data.rating){
                     console.log(data);
