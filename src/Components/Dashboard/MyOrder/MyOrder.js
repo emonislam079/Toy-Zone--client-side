@@ -18,7 +18,7 @@ const MyOrder = () => {
 
     
     return (
-      <div>
+      <div className="container">
             <h2>My Orders: {Orders.length}</h2>
             <TableContainer component={Paper}>
                 <Table sx={{}} aria-label="Appointments table">

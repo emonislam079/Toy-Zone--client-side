@@ -3,7 +3,7 @@ import React from 'react';
 
 const Subscrive = () => {
     return (
-        <div className="container w-50 align-center bg-primary rounded-3 mt-5">
+        <div className="container w-50 align-center bg-info rounded-3 mt-5">
             <h1 className="mt-5 p-3 text-dark">Subscribe To Our Newsletter For Latest Update</h1>
             <form class="row g-1 ms-5">
   

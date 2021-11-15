@@ -1,13 +1,17 @@
 .footer-container {
-  background-color: rgb(23, 55, 235);
+  background-color: #50ebec;
   padding: 50px;
+  color: black;
+  margin-top: 1px;
 }
-.link a {
+.link a,
+h3,
+p {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 .link a:hover {
-  color: gray;
+  color: white;
 }
 .link {
   text-align: center;

@@ -17,7 +17,7 @@ const Bannar = () => {
             <Grid container spacing={2}>
                 <Grid item style={{ ...verticalCenter, textAlign: 'left' }} xs={12} md={8}>
                     <Box>
-                        <Typography variant="h2">
+                        <Typography variant="h2" sx={{ fontWeight: 600 }}>
                         WELCOME TO TOYS ZONE
                         </Typography>
                         <Typography variant="h3" sx={{ my: 5, fontSize: 40, fontWeight: 300, color: 'gray' }}>

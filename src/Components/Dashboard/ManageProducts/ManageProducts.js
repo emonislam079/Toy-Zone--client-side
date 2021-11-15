@@ -12,7 +12,7 @@ const ManageOrder = () => {
 
     
     return (
-      <div>
+      <div className="container">
             <h2>ALL Orders: {Orders.length}</h2>
             <TableContainer component={Paper}>
                 <Table sx={{}} aria-label="Appointments table">
