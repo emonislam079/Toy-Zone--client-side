@@ -5,6 +5,7 @@ import Bannar from '../Bannar/Bannar';
 import Reviews from '../../Review/Reviews'
 
 import SliceToys from '../SliceToy/SliceToys';
+import Subscrive from '../Subscrive/Subscrive';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Bannar></Bannar>
             <SliceToys></SliceToys>
             <Reviews></Reviews>
+            <Subscrive></Subscrive>
             <Footer></Footer>
             
             

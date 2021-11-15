@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import Toy from './Toy';
 import Header from '../Shared/Header/Header';
+import Footer from '../Shared/Footer/Footer';
 
 const Toys = () => {
     const [toys , setToys]= useState([]);
@@ -33,6 +34,7 @@ const Toys = () => {
                 </Grid>
             </Container>
         </Box>
+        <Footer></Footer>
         </Box>
         
     );
