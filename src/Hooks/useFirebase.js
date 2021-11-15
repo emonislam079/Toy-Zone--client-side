@@ -71,14 +71,17 @@ const useFirebase = () => {
 
     // observe user
     useEffect(() => {
-      const unsubscribed = onAuthStateChanged(auth, (user) => {
-            if (user) {
+      const unsubscribed = onAuthStateChanged(auth, user => {
+          if (user) {
               setUser(user);
-            } 
-            setIsLoading(false);
-          });
-          return () => unsubscribed;
-    }, [])
+          }
+          else {
+              setUser({})
+          }
+          setIsLoading(false);
+      });
+      return () => unsubscribed;
+  }, [])
 
     useEffect(() => {
       fetch(`https://agile-fortress-60515.herokuapp.com/users/${user.email}`)
@@ -88,9 +91,12 @@ const useFirebase = () => {
 
     const logout = () => {
       setIsLoading(true);
-      signOut(auth)
-          .then(() => { })
-          .finally(() => setIsLoading(false));
+      signOut(auth).then(() => {
+          // Sign-out successful.
+        }).catch((error) => {
+          // An error happened.
+        })
+        .finally(() => setIsLoading(false));
   }
 
     const saveUser = (email, displayName, method) => {

@@ -30,7 +30,7 @@ import AdminRoute from '../../LogIn/AdminRoute/AdminRoute';
 const drawerWidth = 240;
 
 function Dashboard(props) {
-  const {admin} = useAuth();
+  const {admin, logout} = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
@@ -47,17 +47,18 @@ function Dashboard(props) {
       {admin && <Box>
         <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/makeAdmin`}><Button >Make Admin</Button></Link>
       <Divider />
-      <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/manageProducts`}><Button >Manage Products</Button></Link>
+      <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/manageProducts`}><Button >Manage All Orders</Button></Link>
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/addProduct`}><Button >Add Product</Button></Link>
-      <Divider /></Box>}
+      <Divider /></Box> ||
       <Box>
         <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/myOrder`}><Button >My Order</Button></Link>
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/payment`}><Button >Payment</Button></Link>
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/review`}><Button >Review</Button></Link>
-      <Divider /></Box>
+      <Divider /></Box>}
+      <Button onClick={logout}>Logout</Button>
     </div>
   );
 
