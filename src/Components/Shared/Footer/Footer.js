@@ -25,9 +25,7 @@ const Footer = () => {
     <div className="col link">
         <h3>We Accepts</h3>
         <br />
-        <a href="/dashboard/payment">Mobile Banking</a>
-        <br />
-        <a href="/dashboard/payment">Hand Cash</a>
+        <img src="https://www.braintreepayments.com/images/features/payment-methods/payment-methods.png" width="80%" alt="" />
     </div>
     <div className="col contact text-center">
         <h3 >Contact Details</h3>
