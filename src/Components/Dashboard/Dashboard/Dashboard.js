@@ -23,13 +23,14 @@ import AddProduct from '../AddProduct/AddProduct';
 import Review from '../Review/Review';
 import Payment from '../Payment/Payment';
 import MyOrder from '../MyOrder/MyOrder';
+import AdminRoute from '../../LogIn/AdminRoute/AdminRoute';
 
 
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
-  const {logout, admin} = useAuth();
+  const {admin} = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
@@ -57,8 +58,6 @@ function Dashboard(props) {
       <Divider />
       <Link style={{textDecoration: 'none', color: 'Black'}} to={`${url}/review`}><Button >Review</Button></Link>
       <Divider /></Box>}
-      
-      <Button onClick={logout}>Logout</Button>
     </div>
   );
 
@@ -128,19 +127,19 @@ function Dashboard(props) {
         <Toolbar />
         <Switch>
         <Route exact path={path}>
-          <h2>Toys Zone Dashboard</h2>
-          <h2>You can see Your Order</h2>
+          <h1>Toys Zone Dashboard</h1>
+          
 
         </Route>
-        <Route path={`${path}/makeAdmin`}>
+        <AdminRoute path={`${path}/makeAdmin`}>
           <MakeAdmin></MakeAdmin>
-        </Route>
-        <Route path={`${path}/manageProducts`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/manageProducts`}>
           <ManageProduct></ManageProduct>
-        </Route>
-        <Route path={`${path}/addProduct`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/addProduct`}>
           <AddProduct></AddProduct>
-        </Route>
+        </AdminRoute>
         <Route path={`${path}/review`}>
           <Review></Review>
         </Route>

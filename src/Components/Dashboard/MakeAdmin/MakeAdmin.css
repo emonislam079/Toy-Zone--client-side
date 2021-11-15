@@ -6,12 +6,8 @@
 }
 .admin-form button {
   margin-top: 10px;
-  background-color: lightgreen;
   width: 90%;
   border-radius: 5px;
-}
-.admin-form button:hover {
-  background-color: yellow;
 }
 .admin-form h4 {
   color: rgb(23, 161, 224);
