@@ -1,4 +1,4 @@
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
+import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 import useAuth from '../../../Hooks/useAuth';
@@ -14,7 +14,21 @@ const MyOrder = () => {
         .then(data => setOrders(data))
     }, [])
 
-
+    const handelDelete = id =>{
+        const url = `https://agile-fortress-60515.herokuapp.com/order/${id}`;
+        fetch(url, {
+          method: 'DELETE'
+        })
+        .then (res => res.json())
+        .then (data =>{
+            if(data.deletedCount){
+                alert('Want to Delete Orders')
+                const remaining = Orders.filter(row => row._id !==id);
+                setOrders(remaining);
+            }
+          
+        })
+      } 
 
     
     return (
@@ -28,6 +42,7 @@ const MyOrder = () => {
                             <TableCell align="center">Price</TableCell>
                             <TableCell align="right">Address</TableCell>
                             <TableCell align="right">Phone</TableCell>
+                            
                             
                         </TableRow>
                     </TableHead>
@@ -43,6 +58,7 @@ const MyOrder = () => {
                                 <TableCell align="center">{row.price}Tk</TableCell>
                                 <TableCell align="right">{row.address}</TableCell>
                                 <TableCell align="right">{row.phone}</TableCell>
+                                <Button onClick={()=> handelDelete(row._id)} sx={{m:2}} variant="contained">Delete</Button>
                                 
                             </TableRow>
                         ))}
